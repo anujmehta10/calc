@@ -1,0 +1,17 @@
+body{
+	font-family: 'open sans';
+	background-color: black;
+}
+.container{
+	width:400px;
+	height:400px;
+	background-color: lightgray;
+}
+.calculator{
+	width:80px;
+	height: 80px;
+	background-color: pink;
+	margin:0 auto;
+	position: relative;
+	border-radius: 5px solid black;
+}

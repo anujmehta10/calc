@@ -1,0 +1,159 @@
+<!DOCUMENT html>
+<html>
+<head>
+	<title>Calc</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="calc-parent">
+		<h1>Calculator</h1>
+		<div class="row">
+			<div class="column" id="calc-display-val">0</div>
+
+		</div>
+		<div class="row">
+			<div class="calc-btn column" id="calc-clear">AC</div>
+			<div class="calc-btn column" id="calc-backspace">&#8676;</div>
+			<div class="calc-btn calc-btn-operator column" id="calc-divide">&#247;</div>
+
+		</div>
+		<div class="row">
+				<div class="calc-btn calc-btn-num column" id="calc-seven">7</div>
+				<div class="calc-btn calc-btn-num column" id="calc-eight">8</div>
+				<div class="calc-btn calc-btn-num column" id="calc-nine">9</div>
+				<div class="calc-btn calc-btn-operator column" id="calc-mul">*</div>
+		</div>
+		<div class="row">
+				<div class="calc-btn calc-btn-num column" id="calc-four">4</div>
+				<div class="calc-btn calc-btn-num column" id="calc-five">5</div>
+				<div class="calc-btn calc-btn-num column" id="calc-six">6</div>
+				<div class="calc-btn calc-btn-operator column" id="calc-add">+</div>
+
+		</div>
+		<div class="row">
+				<div class="calc-btn calc-btn-num column" id="calc-one">1</div>
+				<div class="calc-btn calc-btn-num column" id="calc-two">2</div>
+				<div class="calc-btn calc-btn-num column" id="calc-three">3</div>
+				<div class="calc-btn calc-btn-operator column" id="calc-sub">-</div>
+
+		</div>
+		<div class="row">
+				<div class="calc-btn calc-btn-num column" id="calc-zero">0</div>
+				<div class="calc-btn calc-btn-num column" id="calc-decimal">.</div>
+				<div class="calc-btn calc-btn-operator column" id="calc-equals">=</div>
+
+		</div>
+
+	</div>
+
+<script>
+	
+	var onebtn = document.getElementById("calc-one");
+	var twobtn=document.getElementById('calc-two');
+	var threebtn=document.getElementById('calc-three');
+	var fourbtn=document.getElementById('calc-four');
+	var fivebtn=document.getElementById('calc-five');
+	var sixbtn=document.getElementById('calc-six');
+	var sevenbtn=document.getElementById('calc-seven');
+	var eightbtn=document.getElementById('calc-eight');
+	var ninebtn=document.getElementById('calc-nine');
+	var zerobtn=document.getElementById('calc-zero');
+
+	var decimalbtn=document.getElementById('calc-decimal');
+	var clearbtn=document.getElementById('calc-clear');
+	var backspacebtn=document.getElementById('calc-backspace');
+	var displayvaluebtn=document.getElementById('calc-display-val');
+
+
+	var displayval="0";
+	var pendingval;
+	var evalStringArray=[];
+
+
+	var calcnumbtn=document.getElementByClassName('calc-btn-num');
+	var calcoperatorbtn=document.getElementByClassName('calc-btn-operator');
+
+	var updatedisplayval = (clickObj)=> {
+		var btntext = clickObj.target.innertext;
+	
+		if(displayval == '0')
+			displayval="";
+
+		displayval +=btntext;
+		displayvalElement.innertext=displayval;
+
+
+	}
+	var performoperation=(clickObj) =>{
+		var operator = clickObj.target.innertext;
+		switch(operator)
+		{
+			case "+":
+			pendingval=displayval;
+			displayval="0";
+			displayvalElement.innertext=displayval;
+			evalString.push(pendingval);
+			evalStringArray.push("+");
+			break;
+
+			case"-":
+			pendingval=displayval;
+			displayval="0";
+			displayvalElement.innertext=displayval;
+			evalString.push(pendingval);
+			evalStringArray.push("-");
+			break;
+
+			case"*":
+			pendingval=displayval;
+			displayval="0";
+			displayvalElement.innertext=displayval;
+			evalString.push(pendingval);
+			evalStringArray.push("-");
+			break;
+
+			case"%"
+			pendingval=displayval;
+			displayval="0";
+			displayvalElement.innertext=displayval;
+			evalString.push(pendingval);
+			evalStringArray.push("%");
+			break;
+
+			case"="
+			evalstringArray.push(displayval);
+			var evaluation=eval(evalstringArray.join(''));
+			displayval=evaluation+'';
+			displayvalElement.innertext=displayval;
+			break;
+
+		}
+	}
+
+
+
+	for(i=0;i< calcnumbtn.length;i++){
+		calcnumbtn[i].addEventListener('click',updatedisplayval,false)
+	}
+	//for(i=0;i< calcoperatorbtn.length;i++){
+		//calcoperatorbtn[i].addEventListener('click',performoperation,false)
+	//}
+
+		clearbtn.onClick=()=>{
+			displayval="0";
+			pendingval=undefined;
+			evalStringArray=[];
+			displayElement.innerHTML=displayval;
+		}
+		backspacebtn.onClick=()=>{
+			let lengthofdisplayval=displayval.length;
+			displayval=displayval.slice(0,lengthofdisplayval=1)
+			if(displayval ==='')
+				displayval='0';
+			displayvalElement.innertext=displayval;
+		}
+
+
+</script>
+</body>
+</html>
